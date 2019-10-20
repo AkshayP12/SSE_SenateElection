@@ -3,9 +3,9 @@ Australian Senate Election - Web-based Implementation Prototype
 
 Setup Spring framework:
 
-1. Download Spring tool suite 4 (make sure you provide upgraded version of JDK)
-2. Download Apache tomcat
-3. Download MYSQL
+1. Download and install Spring tool suite 4 (make sure you provide upgraded version of JDK)
+2. Download and install Apache tomcat
+3. Download and install MYSQL
 4. Create database onlinevotingsystem from mysql command prompt
 5. Run the onlinevotingsystem.sql script in the command prompt to create the tables
 6. Configure Spring tool suite with the apache tomcat server by adding it in the package explorer.
