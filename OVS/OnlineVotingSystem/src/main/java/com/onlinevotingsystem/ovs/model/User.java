@@ -1,77 +1,100 @@
 package com.onlinevotingsystem.ovs.model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "auth_user")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "auth_user_id")
-	private int id;
-	
-	@NotNull(message="First Name is mandatory")
-	@Column(name = "first_name")
-	private String name;
+	private Long id;
 
-	@NotNull(message="Last Name is mandatory")
-	@Column(name = "last_name")
-	private String lastName;
-
-	@NotNull(message="Unique id is mandatory")
 	@Column(name = "Unique_id")
-	private String unique_id;
+	private String uniqueId;
 
-	@NotNull(message="Email is mandatory")
-	@Email(message = "Email is invalid")
-	@Column(name = "email")
-	private String email;
-
-	@NotNull(message="Password is mandatory")
-	@Length(min=5, message = "Password should be atleast of 5 characters ")
 	@Column(name = "password")
 	private String password;
 
-//	@Column(name = "mobile")
-	//private String mobile;
+	@Column(name = "first_name")
+	private String firstName;
 
+	@Column(name = "last_name")
+	private String lastName;
+
+	@Column(name = "email")
+	private String email;
+	
 	@Column(name = "status")
 	private String status;
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "auth_user_role", joinColumns = @JoinColumn(name = "auth_user_id"), inverseJoinColumns = @JoinColumn(name = "auth_role_id"))
-	private Set<Role> roles;
+	private Collection<Role> roles;
 
-	public int getId() {
+	public User() {
+	}
+
+	public User(String uniqueId, String password, String firstName, String lastName, String email) {
+		this.uniqueId = uniqueId;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
+	public User(String userName, String password, String firstName, String lastName, String email,
+			Collection<Role> roles) {
+		this.uniqueId = userName;
+		this.password = password;
+		this.uniqueId = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.roles = roles;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getPassword() {
+		return password;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+	public void setUniqueId(String uniqueId) {
+		this.uniqueId = uniqueId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String name) {
+		this.firstName = name;
 	}
 
 	public String getLastName() {
@@ -82,14 +105,6 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getUnique_id() {
-		return unique_id;
-	}
-
-	public void setUnique_id(String unique_id) {
-		this.unique_id = unique_id;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -98,37 +113,18 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	//public String getMobile() {
-		//return mobile;
-	//}
-
-	//public void setMobile(String mobile) {
-		//this.mobile = mobile;
-	//}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public Set<Role> getRoles() {
+	public Collection<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "User{" + "id=" + id + ", userName='" + uniqueId + '\'' + ", password='" + "*********" + '\''
+				+ ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\''
+				+ ", roles=" + roles + '}';
+	}
 }

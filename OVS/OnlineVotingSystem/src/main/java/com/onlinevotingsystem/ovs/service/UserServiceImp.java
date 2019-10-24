@@ -7,33 +7,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.onlinevotingsystem.ovs.dao.UserDao;
 import com.onlinevotingsystem.ovs.model.Role;
 import com.onlinevotingsystem.ovs.model.User;
 import com.onlinevotingsystem.ovs.repository.RoleRepository;
 import com.onlinevotingsystem.ovs.repository.UserRepository;
+import com.onlinevotingsystem.ovs.user.CrmUser;
 
 @Service
 public class UserServiceImp implements UserService {
 
 	@Autowired
-	BCryptPasswordEncoder encoder;
+private	BCryptPasswordEncoder encoder;
 	@Autowired
-	RoleRepository roleRepository;
+private	RoleRepository roleRepository;
 	@Autowired
-	UserRepository userRepository;
-	
+private UserRepository userRepository;
+	private UserDao userDao;
 	@Override
-	public void saveUser(User user) {
-	
-		user.setPassword(encoder.encode(user.getPassword()));
-		user.setStatus("VERIFIED");
+	public void saveUser(CrmUser crmUser) {
+		User user = new User();
+		 // assign user details to the user object
+		user.setUniqueId(crmUser.getUniqueId());
+		user.setPassword(encoder.encode(crmUser.getPassword()));
+		user.setFirstName(crmUser.getFirstName());
+		user.setLastName(crmUser.getLastName());
+		user.setEmail(crmUser.getEmail());
+		user.setStatus("VERIFIED");	
+		
 		Role userRole = roleRepository.findByRole("SITE_USER");
+	
+	
 		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		userRepository.save(user);
 	}
 
 	@Override
-	public boolean isUserAlreadyPresent(User user) {
+	public boolean isUserAlreadyPresent(CrmUser user) {
 		 boolean isUserAlreadyExists = false;
 	     User existingUser = userRepository.findByEmail(user.getEmail());
 	     if(existingUser != null){
