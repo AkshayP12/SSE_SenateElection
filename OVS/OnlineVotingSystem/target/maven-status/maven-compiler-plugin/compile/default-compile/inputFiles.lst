@@ -1,5 +1,6 @@
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/ServletInitializer.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/model/User.java
+/home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/validation/PasswordConstraintValidator.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/captcha/CaptchaSettings.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/captcha/ReCaptchaAttemptService.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/dao/UserDaoImpl.java
@@ -11,8 +12,10 @@
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/Application.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/service/UserService.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/validation/ReCaptchaUnavailableException.java
+/home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/validation/PasswordMatchesValidator.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/validation/FieldMatchValidator.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/user/CrmUser.java
+/home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/validation/PasswordMatches.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/captcha/ICaptchaService.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/controller/AuthenticationController.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/validation/ValidEmail.java
@@ -22,5 +25,6 @@
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/SecurityConfiguration.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/captcha/CaptchaService.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/validation/FieldMatch.java
+/home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/validation/ValidPassword.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/service/UserServiceImp.java
 /home/anupam/Documents/project/SSE_SenateElection/OVS/OnlineVotingSystem/src/main/java/com/onlinevotingsystem/ovs/dao/UserDao.java

@@ -1,7 +1,9 @@
 package com.onlinevotingsystem.ovs.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.onlinevotingsystem.ovs.captcha.ICaptchaService;
 //import org.hibernate.annotations.common.util.impl.Log_.logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +23,26 @@ import com.onlinevotingsystem.ovs.user.CrmUser;
 public class AuthenticationController {
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
+	  @Autowired
+	  private ICaptchaService captchaService;
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("login"); // resources/template/login.html
+		return modelAndView;
+	}
+	@RequestMapping(value = { "/loginUser" }, method = RequestMethod.POST)
+	public ModelAndView loginUser(HttpServletRequest request, ModelMap modelMap) {
+		ModelAndView modelAndView = new ModelAndView();
+		final String response = request.getParameter("g-recaptcha-response");
+		String password= request.getParameter("password");
+		if(response.equals("")) {
+			modelMap.addAttribute("captchError", "Please confirm you are nota bot");
+		     modelAndView.setViewName("register");
+			 return modelAndView;
+		}
 		modelAndView.setViewName("login"); // resources/template/login.html
 		return modelAndView;
 	}
@@ -47,11 +64,34 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public ModelAndView registerUser(@Valid @ModelAttribute("crmUser")  CrmUser user, BindingResult bindingResult, ModelMap modelMap ) {
+	public ModelAndView registerUser(@Valid @ModelAttribute("crmUser")  CrmUser user, BindingResult bindingResult, ModelMap modelMap,	HttpServletRequest request ) {
 		ModelAndView modelAndView =new ModelAndView();
-		
 		String userName = user.getUniqueId();
-	//	logger.info("Processing registration form for: " + userName);
+		String state= request.getParameter("state");
+		//validationg captcha 
+		
+		final String response = request.getParameter("g-recaptcha-response");
+		String password= request.getParameter("password");
+		if(response.equals("")) {
+			
+			modelMap.addAttribute("captchError", "Please confirm you are not a bot");
+		     modelAndView.setViewName("register");
+			 return modelAndView;
+		}
+		
+		if(state.equals("0")) {
+
+			modelMap.addAttribute("stateError", "Please select your state");
+		     modelAndView.setViewName("register");
+			 return modelAndView;
+			
+		}
+		
+        captchaService.processResponse(response);
+
+ //       LOGGER.debug("Registering user account with information: {}", accountDto);
+
+   
 		
 		// form validation
 		 if (bindingResult.hasErrors()){
@@ -59,6 +99,7 @@ public class AuthenticationController {
 			 modelAndView.setViewName("register");
 			 return modelAndView;
 	        }
+		 
 
 	
 		

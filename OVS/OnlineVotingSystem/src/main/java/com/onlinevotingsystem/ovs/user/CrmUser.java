@@ -22,13 +22,11 @@ public class CrmUser {
 	public void setUniqueId(String uniqueId) {
 		this.uniqueId = uniqueId;
 	}
-
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@ValidPassword
 	private String password;
 	
 	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@Size(min = 8, message = "is required")
 	private String matchingPassword;
 
 	@NotNull(message = "is required")
@@ -38,6 +36,9 @@ public class CrmUser {
 	@NotNull(message = "is required")
 	@Size(min = 1, message = "is required")
 	private String lastName;
+	
+	@NotNull(message="is required")
+	private String state;
 	
 	@Column(name = "status")
 	private String status;
@@ -73,6 +74,14 @@ public class CrmUser {
 
 	public void setMatchingPassword(String matchingPassword) {
 		this.matchingPassword = matchingPassword;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public String getFirstName() {

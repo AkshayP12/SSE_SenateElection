@@ -29,6 +29,9 @@ public class User {
 	
 	@Column(name = "status")
 	private String status;
+	
+	@Column(name="state")
+	private String state;
 
 	public String getStatus() {
 		return status;
@@ -37,6 +40,7 @@ public class User {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "auth_user_role", joinColumns = @JoinColumn(name = "auth_user_id"), inverseJoinColumns = @JoinColumn(name = "auth_role_id"))
@@ -111,6 +115,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public Collection<Role> getRoles() {
