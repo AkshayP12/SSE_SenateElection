@@ -46,10 +46,19 @@ color:#000;
 										Successfully Registered!! Please Login
 									</div>
 									<div th:if="${captchError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
-										Please select captcha
+										Please solve re-captcha
 									</div>
 									<div th:if="${stateError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
 										Please select state
+									</div>
+									<div th:if="${unique}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+										Please enter correct unique id
+									</div>
+									<div th:if="${unique}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+										Please enter correct unique id
+									</div>
+									<div th:if="${unique}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+										Please check your full name
 									</div>
 																											
 					            </div>

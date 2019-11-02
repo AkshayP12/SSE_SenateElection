@@ -35,7 +35,7 @@
 				<div style="padding-top: 30px" class="panel-body">
 
 					<!-- Login Form -->
-					<form th:action="@{/loginUser}"
+					<form th:action="@{/login}"
 						  method="POST" class="form-horizontal">
 
 					    <!-- Place for messages: error, alert etc ... -->
@@ -86,7 +86,7 @@
 						<!-- Login/Submit Button -->
 						<div style="margin-top: 10px" class="form-group">						
 							<div class="col-sm-6 controls">
-								<button type="submit" class="btn btn-success" onclick="check()">Login</button>
+								<button type="submit" class="btn btn-success">Login</button>
 								
 							</div>
 						</div>
@@ -103,22 +103,7 @@
 
 		</div>
 
-	</div>			
-			<script th:inline="javascript">
-			
-			function check(event){
-				event.preventDefault();
-				alert(grecaptcha);
-			    if (typeof grecaptcha !== 'undefined') {
-			        var resp = grecaptcha.getResponse();
-			        if (resp.length == 0) {
-			            $("#captchaError").show().html("Please verify that you are not a robot.");
-			            return;
-			        }
-			    }
-			  form.sumbit();
-			}
-			</script>
+	</div>
 
 </body>
 </html>

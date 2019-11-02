@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Save Candidate</title>
+</head>
+
+<body style="background-color: #ededed;">
+
+	<div class="container">
+	
+		<h3>Candidates Management</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Save Candidate</p>
+	
+		<form action="#" th:action="@{/candidates/save}"
+						 th:object="${employee}" method="POST">
+					<div class="col-xs-15">
+					            <div>
+								
+					<!-- Check for  errors -->
+									<div th:if="${nameError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+									<div th:text="${nameError}"></div>	
+									</div>
+								
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			<input type="text" th:field="*{firstName}"
+					class="form-control mb-4 col-4" placeholder="First name">
+
+			<input type="text" th:field="*{lastName}"
+					class="form-control mb-4 col-4" placeholder="Last name">
+
+			<input type="text" th:field="*{email}"
+					class="form-control mb-4 col-4" placeholder="Email">
+		<input type="text" 
+					class="form-control mb-4 col-4" placeholder="Party/Independent">
+			<select class="form-control mb-4 col-4" placeholder= "-Please select State-">
+							<option th:value="0" >Please Select State</option>
+							<option th:value="a"> Australian Capital Territory</option>
+   							 <option th:value="s" > South Australia</option>
+   							 <option th:value="w" >Western Australia</option>
+   							 <option th:value="v"> Victoria</option>
+   							 <option th:value="t">Tasmania</option>
+   							  <option th:value="n">New South Wales</option>
+   							  <option th:value="q">Queensland</option>
+   							  <option th:value="nt">Nothern Territory</option>
+				</select>
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/candidates/list}">Back to Candidate List</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
