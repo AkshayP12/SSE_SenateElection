@@ -16,6 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.onlinevotingsystem.ovs.CustomAuthenticationSuccessHandler;
+
 import ch.qos.logback.core.Context;
 
 @Configuration
@@ -36,6 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
 
+	   @Autowired
+	    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().usersByUsernameQuery(usersQuery).authoritiesByUsernameQuery(rolesQuery)
@@ -45,18 +49,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests()
+		/*http.authorizeRequests()
 				// URLs matching for access rights
 				.antMatchers("/").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/register").permitAll()
 				.antMatchers("/home/**").hasAnyAuthority("SUPER_USER", "ADMIN_USER", "SITE_USER")
-				/*
-				 * .antMatchers("/home/**").hasRole("SITE_USER")
-				 * .antMatchers("/adminhome/**").hasRole("ADMIN_USER")
-				 * .antMatchers("/siteowner/**").hasRole("SUPER_USER")
-				 * .anyRequest().authenticated()
-				 */
 				.and()
 				// form login
 				.formLogin()
@@ -72,6 +70,45 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/login").and()
 				.exceptionHandling()
 				.accessDeniedPage("/access-denied");
+				*/
+	/*	http.authorizeRequests()
+		.antMatchers("/").hasRole("USER")
+		.antMatchers("/admin/**").hasRole("ADMIN")
+		.antMatchers("/owner/**").hasRole("SUPER")
+		.and()
+		.formLogin()
+			.loginPage("/login")
+			.loginProcessingUrl("/login")
+			.failureUrl("/login?error=true")
+			.defaultSuccessUrl("/home")
+			.usernameParameter("email")
+			.passwordParameter("password")
+			.permitAll()
+		.and()
+		.logout().permitAll()
+		.and()
+		.exceptionHandling().accessDeniedPage("/access-denied");*/
+		
+		
+		http.authorizeRequests()
+		.antMatchers("/home/").hasAuthority("USER")
+		.antMatchers("/admin/**").hasAuthority("ADMIN")
+		.antMatchers("/owner/**").hasRole("OWNER")
+		.and()
+		.formLogin()
+		.loginPage("/login")
+		.loginProcessingUrl("/login")
+		.usernameParameter("email")
+		.passwordParameter("password")
+		.defaultSuccessUrl("/")
+		.permitAll()
+		.and()
+		.logout().permitAll()
+		.and()
+		.exceptionHandling().accessDeniedPage("/access-denied");
+		
+			
+		
 	}
 
 	@Override

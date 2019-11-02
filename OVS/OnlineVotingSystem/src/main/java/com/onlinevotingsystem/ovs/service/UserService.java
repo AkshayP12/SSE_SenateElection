@@ -7,4 +7,6 @@ public interface UserService {
 	public void saveUser(CrmUser user);
 	
 	public boolean isUserAlreadyPresent (CrmUser user);
+
+	public User findByUserName(String userName);
 }

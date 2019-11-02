@@ -54,13 +54,21 @@ public class AuthenticationController {
 	}
 	
 	
-	  @RequestMapping(value = "/home", method = RequestMethod.GET) public
-	  ModelAndView home() { ModelAndView modelAndView = new ModelAndView();
-	  modelAndView.setViewName("home"); // resources/template/home.html
-	   return modelAndView; 
-	   }
-	 
 	
+	  @RequestMapping(value = "/", method = RequestMethod.GET) 
+	  public ModelAndView home() { 
+	 ModelAndView modelAndView = new ModelAndView();
+	  modelAndView.setViewName("home"); // resources/template/home.html 
+	  return modelAndView;
+	  }
+	 
+	 
+	  @RequestMapping(value = "/admin", method = RequestMethod.GET) 
+	  public ModelAndView admin() { 
+	 ModelAndView modelAndView = new ModelAndView();
+	  modelAndView.setViewName("admin"); // resources/template/home.html 
+	  return modelAndView;
+	  }
 	
 	
 	// 

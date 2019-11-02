@@ -2,57 +2,84 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-	<title>Welcome to E-Senate Voting System</title>
+<title>Online Voting System - Welcome</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Reference Bootstrap files -->
+	<link rel="stylesheet"
+		 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
-<body>
-	
-	<div>
+<body style="background-color:#ededed;">
+<div sec:authorize="hasAuthority('USER')">
+<h2> Welcome to E-Senate System</h2>
+</div>
+<hr>
+<div sec:authorize="hasAuthority('USER')">
+<h3> Please read instructions before proceeding to the Ballot page</h3>
+</div>
+	<div class="container-fluid">
+	<font size="2px">
 		User: <span sec:authentication="name"></span>
 		<br><br>
-		Role(s): <span sec:authentication="principal.authorities"></span>
+		Role: <span sec:authentication="principal.authorities"></span>
 		<br><br>
-
+</font>
 		<!-- Check for login error -->																	
 		<div th:if="${session.user}" >
 			<p th:text="'First name: ' + ${session.user.firstName} + ', Last name: ' + ${session.user.lastName} + ', Email: ' + ${session.user.email}"></p>
 		</div>		
 	</div>
-
-	<a href="#">Click here to cast your vote </a><br>
-	<a th:href="@{/candidates/list}"> Click here to manage candidates </a><br>
-	<a href="#"> Click here for results </a><br>
 	
-	<div sec:authorize="hasRole('SUPER_USER')">
+	<div sec:authorize="hasAuthority('USER')">
 	
-		<!-- Add a link to point to /leaders ... this is for the managers -->
+<h5>Please select the options in the ballot paper and you are allowed to vote only once.</h5><br>
+<h5>	You will receive an acknowledgement on successfully completion of the process.</h5><br>
+	
+	<a href="#" class="btn btn-primary" role="button" aria-pressed="true"> Cast Vote</a>
+	</div>
+	
+	
+	<div sec:authorize="hasAuthority('SUPER')">
+	
+		<!-- Add a link to point to super user ... this is for the managers -->
 		
 		<p>
 			<a th:href="@{/siteowner}">SuperUser</a>
-		
+		<a href="#"> Click here for results </a><br>
+	
 		</p>
 
-	</div>	
+	</div>
 
-	<div sec:authorize="hasRole('ADMIN_USER')">  
+	<div sec:authorize="hasAuthority('ADMIN')">  
 
 		<!-- Add a link to point to /systems ... this is for the admins -->
 		
 		<p>
-			<a th:href="@{/adminhome}">ADMINS</a>
-			(Only for Admin peeps)
+			<a th:href="@{/admin}"> Click here to manage candidates </a><br>
 		</p>
 	
 	</div>
 
 	<hr>
-	
-	
+	</div>
+	<p>-------------------------------------------------------------------------------------------------------------------------------------------------</p>
+	<br><br>
 	<!-- Add a logout button -->
 	<form th:action="@{/logout}" 
 			   method="POST">
 	
-		<input type="submit" value="Logout" />
+		<input class="btn btn-primary" role="button" aria-pressed="true" type="submit" value="Logout" />
 	
 	</form>	
 			

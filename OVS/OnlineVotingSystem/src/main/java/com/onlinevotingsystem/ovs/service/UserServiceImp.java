@@ -72,5 +72,11 @@ private UserRepository userRepository;
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
 	}
+
+	@Override
+	public User findByUserName(String userName) {
+		
+		return userDao.findByUserName(userName);
+	}
 }
 

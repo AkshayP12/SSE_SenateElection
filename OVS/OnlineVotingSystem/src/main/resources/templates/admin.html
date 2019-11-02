@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
-<meta charset="UTF-8">
-<title>Welcome Admin User</title>
+<title>Online Voting System - Welcome</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Reference Bootstrap files -->
+	<link rel="stylesheet"
+		 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
-<body>
-Welcome Admin User
+
+<body style="background-color:#ededed;">
+<h2> Welcome Admin</h2>
+
+<font size="3px">
+This page will take you the candidate and Parties page Management.
+<br><br>
+</font>
+		
+		<p>
+			<a th:href="@{/candidates/list}" class="btn btn-primary" role="button" aria-pressed="true"> Click here to manage candidates </a><br>
+		</p>
+	
+	</div>
+	<p>-------------------------------------------------------------------------------------------------------------------------------------------------</p>
+	<br><br>
+	<!-- Add a logout button -->
+	<form th:action="@{/logout}" 
+			   method="POST">
+	
+		<input class="btn btn-primary" role="button" aria-pressed="true" type="submit" value="Logout" />
+	
+	</form>	
+			
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+

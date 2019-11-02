@@ -13,13 +13,16 @@ com/onlinevotingsystem/ovs/validation/EmailValidator.class
 com/onlinevotingsystem/ovs/model/Newuser.class
 com/onlinevotingsystem/ovs/model/Employee.class
 com/onlinevotingsystem/ovs/WebMvcConfig.class
+com/onlinevotingsystem/ovs/dao/RoleDaoImpl.class
 com/onlinevotingsystem/ovs/dao/UserDao.class
 com/onlinevotingsystem/ovs/validation/ReCaptchaUnavailableException.class
 com/onlinevotingsystem/ovs/ServletInitializer.class
 com/onlinevotingsystem/ovs/SecurityConfiguration.class
 com/onlinevotingsystem/ovs/Application.class
 com/onlinevotingsystem/ovs/validation/ValidEmail.class
+com/onlinevotingsystem/ovs/controller/DemoController.class
 com/onlinevotingsystem/ovs/user/CrmUser.class
+com/onlinevotingsystem/ovs/dao/RoleDao.class
 com/onlinevotingsystem/ovs/captcha/ReCaptchaAttemptService.class
 com/onlinevotingsystem/ovs/captcha/GoogleResponse$1.class
 com/onlinevotingsystem/ovs/captcha/CaptchaSettings.class

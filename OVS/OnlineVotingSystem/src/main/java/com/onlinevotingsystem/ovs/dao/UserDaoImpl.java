@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
 		Session currentSession = entityManager.unwrap(Session.class);
 
 		//  retrieve/read from database using username
-		Query<User> theQuery = currentSession.createQuery("from User where userName=:uName", User.class);
+		Query<User> theQuery = currentSession.createQuery("from auth_user where email=:uName", User.class);
 		theQuery.setParameter("uName", theUserName);
 		User theUser = null;
 		try {
