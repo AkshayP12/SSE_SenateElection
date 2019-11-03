@@ -10,7 +10,6 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 @SpringBootApplication 
 public class Application {
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
@@ -31,7 +30,6 @@ public class Application {
 
 	        // Add HTTP to HTTPS redirect
 	        tomcat.addAdditionalTomcatConnectors(httpToHttpsRedirectConnector());
-
 	        return tomcat;
 	    }
 
@@ -48,5 +46,4 @@ public class Application {
 	        connector.setRedirectPort(8443);
 	        return connector;
 	    }
-	  
 }
