@@ -25,7 +25,7 @@ public class CandidateController {
 		// get employees from db
 		List<Employee> theEmployees = employeeService.findAll();		
 		// add to the spring model
-		theModel.addAttribute("employees", theEmployees)
+		theModel.addAttribute("employees", theEmployees);
 		return "candidates/list-employees";
 	}
 	@GetMapping("/showFormForAdd")
